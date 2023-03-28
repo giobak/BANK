@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29771b86-8084-44ee-94a2-183e7f214b20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Agreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Agreement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/example/bank_application/entity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +182,7 @@
       <workItem from="1679838594691" duration="30706000" />
       <workItem from="1679917245214" duration="987000" />
       <workItem from="1679918247903" duration="9638000" />
-      <workItem from="1680012957537" duration="1745000" />
+      <workItem from="1680012957537" duration="3170000" />
     </task>
     <servers />
   </component>
