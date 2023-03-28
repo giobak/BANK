@@ -2,10 +2,7 @@ package example.bank_application.entity;
 
 import example.bank_application.entity.enums.ClientStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.security.Timestamp;
 import java.util.Objects;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Client {
 

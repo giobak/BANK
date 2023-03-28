@@ -1,0 +1,5 @@
+<root>
+    <item name='org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration.LiquibaseConfiguration liquibase.integration.spring.SpringLiquibase liquibase(org.springframework.beans.factory.ObjectProvider&lt;javax.sql.DataSource&gt;, org.springframework.beans.factory.ObjectProvider&lt;javax.sql.DataSource&gt;)'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

@@ -4,10 +4,7 @@ package example.bank_application.entity;
 import example.bank_application.entity.enums.CurrencyType;
 import example.bank_application.entity.enums.ProductStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.security.Timestamp;
 import java.util.Objects;
@@ -18,6 +15,7 @@ import java.util.Set;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Product {
 

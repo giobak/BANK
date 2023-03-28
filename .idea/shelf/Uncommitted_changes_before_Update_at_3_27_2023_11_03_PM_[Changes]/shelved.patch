@@ -1,0 +1,195 @@
+Index: src/main/java/example/bank_application/entity/Transaction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\n\r\nimport example.bank_application.entity.enums.TransactionType;\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\nimport java.util.UUID;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\npublic class Transaction {\r\n\r\n    @Id\r\n    @GeneratedValue(generator = \"UUID\", strategy = GenerationType.AUTO)  //UUID????????\r\n//    @GenericGenerator(name = \"UUID\",\r\n//            strategy = \"com.example.bank_application.generator.UuidTimeSequenceGenerator\")\r\n    @Column(name = \"id\")\r\n    private UUID id;\r\n    @Column(name = \"type\")\r\n    @Enumerated(EnumType.STRING)\r\n    private TransactionType type;\r\n    @Column(name = \"amount\")\r\n    private double amount;\r\n    @Column(name = \"description\")\r\n    private String description;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n\r\n    @ManyToOne(cascade = CascadeType.ALL)\r\n    @JoinColumn(name = \"debit_account_id\", referencedColumnName=\"id\")\r\n    private Account debitAccount;\r\n    @ManyToOne(cascade = CascadeType.ALL)\r\n    @JoinColumn(name = \"credit_account_id\", referencedColumnName=\"id\")\r\n    private Account creditAccount;\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Transaction)) return false;\r\n        Transaction that = (Transaction) o;\r\n        return Double.compare(that.amount, amount) == 0 && description.equals(that.description) && createdAt.equals(that.createdAt) && debitAccount.equals(that.debitAccount) && creditAccount.equals(that.creditAccount);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(amount, description, createdAt, debitAccount, creditAccount);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Transaction.java b/src/main/java/example/bank_application/entity/Transaction.java
+--- a/src/main/java/example/bank_application/entity/Transaction.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Transaction.java	(date 1679918467078)
+@@ -15,6 +15,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
++@AllArgsConstructor
+ 
+ public class Transaction {
+ 
+Index: src/main/java/example/bank_application/entity/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\n\r\nimport example.bank_application.entity.enums.CurrencyType;\r\nimport example.bank_application.entity.enums.ProductStatus;\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\nimport lombok.ToString;\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\nimport java.util.Set;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\npublic class Product {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n//    @GenericGenerator(name = \"UUID\",\r\n//            strategy = \"com.example.bank_application.generator.UuidTimeSequenceGenerator\")\r\n    @Column(name = \"id\")\r\n    private int id;\r\n    @Column(name = \"name\")\r\n    private String name;\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private ProductStatus status;\r\n    @Column(name = \"currency_code\")\r\n    @Enumerated(EnumType.STRING)\r\n    private CurrencyType currencyCode;\r\n    @Column(name = \"interest_rate\")\r\n    private float interestRate;\r\n    @Column(name = \"limit\")\r\n    private int limit;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n    @Column(name = \"updated_at\")\r\n    private Timestamp updatedAt;\r\n\r\n    @OneToMany(mappedBy = \"product\", cascade = CascadeType.ALL)\r\n    private Set<Agreement> agreement;\r\n    @ManyToMany(cascade = CascadeType.PERSIST)\r\n    @JoinTable(name = \"products_managers\",\r\n            joinColumns = {@JoinColumn(name = \"product_id\")},\r\n            inverseJoinColumns = {@JoinColumn(name = \"manager_id\")})\r\n    private Set<Manager> managers;\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        Product product = (Product) o;\r\n        return Objects.equals(name, product.name);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(name);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Product.java b/src/main/java/example/bank_application/entity/Product.java
+--- a/src/main/java/example/bank_application/entity/Product.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Product.java	(date 1679918467037)
+@@ -4,10 +4,7 @@
+ import example.bank_application.entity.enums.CurrencyType;
+ import example.bank_application.entity.enums.ProductStatus;
+ import jakarta.persistence.*;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import lombok.ToString;
++import lombok.*;
+ 
+ import java.security.Timestamp;
+ import java.util.Objects;
+@@ -18,6 +15,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
++@AllArgsConstructor
+ 
+ public class Product {
+ 
+Index: src/main/java/example/bank_application/entity/Manager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\nimport example.bank_application.entity.enums.ManagerStatus;\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\nimport lombok.ToString;\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\nimport java.util.Set;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\npublic class Manager {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n//    @GeneratedValue\r\n//    @GenericGenerator(name = \"UUID\",\r\n//            strategy = \"com.example.bank_application.generator.UuidTimeSequenceGenerator\")\r\n    @Column(name = \"id\")\r\n    private long id;\r\n    @Column(name = \"first_name\")\r\n    private String firstName;\r\n    @Column(name = \"last_name\")\r\n    private String lastName;\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private ManagerStatus status;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n    @Column(name = \"updated_at\")\r\n    private Timestamp updatedAt;\r\n\r\n\r\n    @ManyToMany(cascade = CascadeType.PERSIST)\r\n    @JoinTable(name = \"products_managers\",\r\n            joinColumns = {@JoinColumn(name = \"manager_id\")},\r\n            inverseJoinColumns = {@JoinColumn(name = \"product_id\")})\r\n    private Set<Product> products;\r\n    @OneToMany(mappedBy = \"manager\", cascade = CascadeType.PERSIST)\r\n    private Set<Client> clients;\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Manager)) return false;\r\n        Manager manager = (Manager) o;\r\n        return firstName.equals(manager.firstName) && lastName.equals(manager.lastName) && clients.equals(manager.clients);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(firstName, lastName, clients);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Manager.java b/src/main/java/example/bank_application/entity/Manager.java
+--- a/src/main/java/example/bank_application/entity/Manager.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Manager.java	(date 1679918467057)
+@@ -2,10 +2,7 @@
+ 
+ import example.bank_application.entity.enums.ManagerStatus;
+ import jakarta.persistence.*;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import lombok.ToString;
++import lombok.*;
+ 
+ import java.security.Timestamp;
+ import java.util.Objects;
+@@ -16,6 +13,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
++@AllArgsConstructor
+ 
+ public class Manager {
+     @Id
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n  xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n  <modelVersion>4.0.0</modelVersion>\r\n\r\n  <parent>\r\n    <groupId>org.springframework.boot</groupId>\r\n    <artifactId>spring-boot-starter-parent</artifactId>\r\n    <version>3.0.4</version>\r\n    <relativePath/> <!-- lookup parent from repository -->\r\n  </parent>\r\n\r\n  <groupId>org.example</groupId>\r\n  <artifactId>BANK</artifactId>\r\n  <version>1.0-SNAPSHOT</version>\r\n  <packaging>jar</packaging>\r\n\r\n  <name>BANK</name>\r\n  <url>http://maven.apache.org</url>\r\n\r\n  <properties>\r\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n    <maven.compiler.source>19</maven.compiler.source>\r\n    <maven.compiler.target>19</maven.compiler.target>\r\n  </properties>\r\n\r\n  <dependencies>\r\n\r\n    <dependency>\r\n      <groupId>org.liquibase</groupId>\r\n      <artifactId>liquibase-core</artifactId>\r\n      <version>4.20.0</version>\r\n    </dependency>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    <dependency>\r\n      <groupId>org.mapstruct</groupId>\r\n      <artifactId>mapstruct</artifactId>\r\n      <version>1.5.3.Final</version>\r\n    </dependency>\r\n\r\n\r\n\r\n\r\n    <dependency>\r\n      <groupId>junit</groupId>\r\n      <artifactId>junit</artifactId>\r\n      <version>4.13.2</version>\r\n      <scope>test</scope>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.projectlombok</groupId>\r\n      <artifactId>lombok</artifactId>\r\n      <version>1.18.26</version>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.hibernate</groupId>\r\n      <artifactId>hibernate-core</artifactId>\r\n      <version>6.1.7.Final</version>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.springframework</groupId>\r\n      <artifactId>spring-jdbc</artifactId>\r\n      <version>6.0.6</version>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.springframework.boot</groupId>\r\n      <artifactId>spring-boot-autoconfigure</artifactId>\r\n      <version>3.0.4</version>\r\n    </dependency>\r\n\r\n    <dependency>\r\n      <groupId>org.springframework.boot</groupId>\r\n      <artifactId>spring-boot-starter-web</artifactId>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.springframework.boot</groupId>\r\n      <artifactId>spring-boot-starter-actuator</artifactId>\r\n    </dependency>\r\n\r\n  </dependencies>\r\n  <build>\r\n    <plugins>\r\n\r\n      <plugin>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-maven-plugin</artifactId>\r\n        <version>1.5.1.RELEASE</version>\r\n        <configuration>\r\n          <profiles>\r\n            <profile>foo</profile>\r\n            <profile>bar</profile>\r\n          </profiles>\r\n        </configuration>\r\n\r\n      </plugin>\r\n\r\n    </plugins>\r\n  </build>\r\n\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/pom.xml	(date 1679942162486)
+@@ -33,6 +33,12 @@
+ 
+ 
+ 
++    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
++    <dependency>
++      <groupId>org.springframework.data</groupId>
++      <artifactId>spring-data-jpa</artifactId>
++      <version>2.7.6</version>
++    </dependency>
+ 
+ 
+ 
+Index: src/main/java/example/bank_application/entity/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\nimport example.bank_application.entity.enums.ClientStatus;\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\nimport lombok.ToString;\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\nimport java.util.Set;\r\nimport java.util.UUID;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\npublic class Client {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n//    @GenericGenerator(name = \"UUID\",\r\n//            strategy = \"com.example.bank_application.generator.UuidTimeSequenceGenerator\")\r\n    @Column(name = \"id\")\r\n    private UUID id;\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private ClientStatus status;\r\n    @Column(name = \"tax_code\")\r\n    private String taxCode;\r\n    @Column(name = \"first_name\")\r\n    private String firstName;\r\n    @Column(name = \"last_name\")\r\n    private String lastName;\r\n    @Column(name = \"email\")\r\n    private String email;\r\n    @Column(name = \"address\")\r\n    private String address;\r\n    @Column(name = \"phone\")\r\n    private String phone;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n    @Column(name = \"updated_at\")\r\n    private Timestamp updatedAt;\r\n\r\n    @OneToMany(mappedBy = \"client\", cascade = CascadeType.ALL)\r\n    private Set<Account> accounts;\r\n    @ManyToOne(cascade = CascadeType.ALL)\r\n    @JoinColumn(name = \"manager_id\", referencedColumnName=\"id\")\r\n    private Manager manager;\r\n\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Client)) return false;\r\n        Client client = (Client) o;\r\n        return taxCode.equals(client.taxCode);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(taxCode);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Client.java b/src/main/java/example/bank_application/entity/Client.java
+--- a/src/main/java/example/bank_application/entity/Client.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Client.java	(date 1679918467104)
+@@ -2,10 +2,7 @@
+ 
+ import example.bank_application.entity.enums.ClientStatus;
+ import jakarta.persistence.*;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import lombok.ToString;
++import lombok.*;
+ 
+ import java.security.Timestamp;
+ import java.util.Objects;
+@@ -17,6 +14,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
++@AllArgsConstructor
+ 
+ public class Client {
+ 
+Index: src/main/java/example/bank_application/entity/Agreement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\nimport example.bank_application.entity.enums.AccountProductStatus;\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\nimport lombok.ToString;\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\n@Table(name = \"agreements\")\r\npublic class Agreement {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n//    @GenericGenerator(name = \"UUID\",\r\n//            strategy = \"com.example.bank_application.generator.UuidTimeSequenceGenerator\")\r\n    @Column(name = \"id\")\r\n    private int id;\r\n    @Column(name = \"interest_rate\")\r\n    private float interestRate;\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private AccountProductStatus status;\r\n    @Column(name = \"sum\")\r\n    private double sum;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n    @Column(name = \"updated_at\")\r\n    private Timestamp updatedAt;\r\n\r\n    @ManyToOne()\r\n    @JoinColumn(name = \"account_id\", referencedColumnName=\"id\")\r\n    private Account account;\r\n    @ManyToOne()\r\n    @JoinColumn(name = \"product_id\", referencedColumnName=\"id\")\r\n    private Product product;\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        Agreement agreement = (Agreement) o;\r\n        return id == agreement.id;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(id);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Agreement.java b/src/main/java/example/bank_application/entity/Agreement.java
+--- a/src/main/java/example/bank_application/entity/Agreement.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Agreement.java	(date 1679918467129)
+@@ -2,10 +2,7 @@
+ 
+ import example.bank_application.entity.enums.AccountProductStatus;
+ import jakarta.persistence.*;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import lombok.ToString;
++import lombok.*;
+ 
+ import java.security.Timestamp;
+ import java.util.Objects;
+@@ -15,6 +12,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
++@AllArgsConstructor
+ 
+ @Table(name = "agreements")
+ public class Agreement {
+Index: src/main/java/example/bank_application/entity/Account.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package example.bank_application.entity;\r\n\r\nimport example.bank_application.entity.enums.AccountProductStatus;\r\nimport example.bank_application.entity.enums.AccountType;\r\nimport example.bank_application.entity.enums.CurrencyType;\r\nimport jakarta.persistence.*;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\nimport lombok.ToString;\r\n\r\nimport java.security.Timestamp;\r\nimport java.util.Objects;\r\nimport java.util.Set;\r\nimport java.util.UUID;\r\n\r\n@Entity\r\n@Setter\r\n@Getter\r\n@ToString\r\n@NoArgsConstructor\r\n\r\npublic class Account {\r\n\r\n\r\n    @Id\r\n    @GeneratedValue(generator = \"UUID\", strategy = GenerationType.AUTO)  //UUID????????\r\n    @Column(name = \"id\")\r\n    private UUID id;\r\n    @Column(name = \"name\")\r\n    private String name;\r\n    @Column(name = \"type\")\r\n    @Enumerated(EnumType.STRING)\r\n    private AccountType type;\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private AccountProductStatus status;\r\n    @Column(name = \"balance\")\r\n    private double balance;\r\n    @Column(name = \"currency_code\")\r\n    @Enumerated(EnumType.STRING)\r\n    private CurrencyType currencyCode;\r\n    @Column(name = \"created_at\")\r\n    private Timestamp createdAt;\r\n    @Column(name = \"updated_at\")\r\n    private Timestamp updatedAt;\r\n\r\n    @ManyToOne(cascade = CascadeType.ALL)\r\n    @JoinColumn(name = \"client_id\", referencedColumnName=\"id\")\r\n    private Client client;\r\n    @OneToMany(mappedBy = \"debitAccount\", cascade = CascadeType.ALL)\r\n    private Set<Transaction> transactionDebits;\r\n    @OneToMany(mappedBy = \"creditAccount\", cascade = CascadeType.ALL)\r\n    private Set<Transaction> transactionCredits;\r\n    @OneToMany(mappedBy = \"account\", cascade = CascadeType.ALL)\r\n    private Set<Agreement> agreements;\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        Account account = (Account) o;\r\n        return Objects.equals(id, account.id);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(id);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/example/bank_application/entity/Account.java b/src/main/java/example/bank_application/entity/Account.java
+--- a/src/main/java/example/bank_application/entity/Account.java	(revision e2e2df697a68546fe5b74b47e11f594f92f3be46)
++++ b/src/main/java/example/bank_application/entity/Account.java	(date 1679918467146)
+@@ -4,10 +4,7 @@
+ import example.bank_application.entity.enums.AccountType;
+ import example.bank_application.entity.enums.CurrencyType;
+ import jakarta.persistence.*;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import lombok.ToString;
++import lombok.*;
+ 
+ import java.security.Timestamp;
+ import java.util.Objects;
+@@ -19,7 +16,7 @@
+ @Getter
+ @ToString
+ @NoArgsConstructor
+-
++@AllArgsConstructor
+ public class Account {
+ 
+ 
+diff --git a/src/main/resources/db/application.yaml b/src/main/resources/application.yaml
+rename from src/main/resources/db/application.yaml
+rename to src/main/resources/application.yaml

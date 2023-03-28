@@ -15,6 +15,7 @@ import java.util.UUID;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Transaction {
 

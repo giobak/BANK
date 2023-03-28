@@ -4,10 +4,7 @@ import example.bank_application.entity.enums.AccountProductStatus;
 import example.bank_application.entity.enums.AccountType;
 import example.bank_application.entity.enums.CurrencyType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.security.Timestamp;
 import java.util.Objects;
@@ -19,7 +16,7 @@ import java.util.UUID;
 @Getter
 @ToString
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Account {
 
 
