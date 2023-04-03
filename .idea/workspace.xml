@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29771b86-8084-44ee-94a2-183e7f214b20" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/036996cb-d8af-4b78-aebb-5c5cb17aaa10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/036996cb-d8af-4b78-aebb-5c5cb17aaa10.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/v0.0.1-SNAPSHOT/ti4-insert-data-to-clients-changelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/v0.0.1-SNAPSHOT/ti4-insert-data-to-clients-changelog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +28,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="github/3" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="1" />
@@ -78,7 +95,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/PROJECT/BANK",
+    "last_opened_file_path": "C:/PROJECT/oxana/TR-BankApplication-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -182,7 +199,8 @@
       <workItem from="1679838594691" duration="30706000" />
       <workItem from="1679917245214" duration="987000" />
       <workItem from="1679918247903" duration="9638000" />
-      <workItem from="1680012957537" duration="3170000" />
+      <workItem from="1680012957537" duration="7701000" />
+      <workItem from="1680081869555" duration="8406000" />
     </task>
     <servers />
   </component>

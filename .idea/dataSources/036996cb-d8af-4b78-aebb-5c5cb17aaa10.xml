@@ -20802,7 +20802,7 @@ VARIABLE_NAME</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="3821" parent="572" name="customer_id">
-      <AutoIncrement>599</AutoIncrement>
+      <AutoIncrement>600</AutoIncrement>
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -20889,7 +20889,7 @@ VARIABLE_NAME</ColNames>
       <Turn>before-row</Turn>
     </trigger>
     <column id="3838" parent="573" name="film_id">
-      <AutoIncrement>1000</AutoIncrement>
+      <AutoIncrement>1001</AutoIncrement>
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -21206,7 +21206,7 @@ film_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="3898" parent="579" name="payment_id">
-      <AutoIncrement>16049</AutoIncrement>
+      <AutoIncrement>16050</AutoIncrement>
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -21289,7 +21289,7 @@ film_id</ColNames>
       <Turn>before-row</Turn>
     </trigger>
     <column id="3914" parent="580" name="rental_id">
-      <AutoIncrement>16049</AutoIncrement>
+      <AutoIncrement>16050</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
